@@ -39,12 +39,14 @@ z-index:-1;
 }
 `;
 
-export const ListItem = (props) => (
+export const ListItem = ({ itemList, setOpenItem }) => (
    <List>
-      {props.itemList.map(item => (
+      {itemList.map(item => (
          <Item
             img={item.img}
-            key={item.id}>
+            key={item.id}
+            onClick={() => setOpenItem(item)}
+         >
             <p>{item.name}</p>
             <p>{item.price.toLocaleString('ru-Ru', { style: 'currency', currency: 'RUB' })}</p>
          </Item>
