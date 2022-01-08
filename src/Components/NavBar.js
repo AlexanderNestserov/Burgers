@@ -57,7 +57,7 @@ export const NavBar = () => (
    <NavBarStyled>
       <Logo>
          <ImgLogo src={logoImg} alt='logo'></ImgLogo>
-         <H1>McDonald's</H1>
+         <H1>Mr. Burger</H1>
       </Logo>
       <Button>
          <ImgSign src={signImg} alt='sign'></ImgSign><br />

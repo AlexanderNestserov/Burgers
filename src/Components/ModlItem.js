@@ -16,10 +16,10 @@ z-index:10;
 `;
 
 const Modal = styled.div`
-margin-top:120px;
+margin-top:50px;
 background-color:#fff;
 width:600px;
-height:600px;
+height:350px;
 font-family:Pacifico;
 `;
 
@@ -35,6 +35,7 @@ margin-bottom:20px;
 const Flex = styled.div`
 display:flex;
 justify-content:space-between;
+
 `;
 
 const Pad = styled.p`

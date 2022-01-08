@@ -7,6 +7,7 @@ import { DivBanner } from './DivBanner';
 const MenuStyled = styled.main`
 background-color:#ccc;
 margin-top:80px;
+margin-left:380px;
 `;
 
 const H2 = styled.h2`
