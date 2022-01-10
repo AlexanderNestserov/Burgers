@@ -1,10 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
-import groupImage from '../images/Group.svg'
+import groupImage from '../images/Group.svg';
+import { totalPriceItems } from '../Functions/secondaryFunction';
 
 const OrderItemStyled = styled.li`
 display:flex;
 margin:15px;
+font-size:18px;
 `;
 
 const ItemName = styled.span`
@@ -21,7 +23,7 @@ text-align:right;
 
 const TrashButton = styled.button`
 height:24px;
-weight:24px;
+width:24px;
 background-color:transparent;
 border-color:transparent;
 background-image:url(${groupImage});
@@ -30,11 +32,11 @@ background-size:cover;
 background-repeat:no-repeat;
 `;
 
-export const OrderListItem = () => (
+export const OrderListItem = ({ order }) => (
    <OrderItemStyled>
-      <ItemName>JS Burger</ItemName>
-      <span>2</span>
-      <ItemPrice>750 P</ItemPrice>
+      <ItemName>{order.name}</ItemName>
+      <span>{order.count}</span>
+      <ItemPrice>{totalPriceItems(order).toLocaleString('ru-Ru', { style: 'currency', currency: 'RUB' })} </ItemPrice>
       <TrashButton />
    </OrderItemStyled>
 );
