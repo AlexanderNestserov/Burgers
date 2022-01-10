@@ -2,16 +2,17 @@ import React from 'react';
 import styled from 'styled-components';
 import groupImage from '../images/Group.svg';
 import { totalPriceItems } from '../Functions/secondaryFunction';
+import { formatCurrency } from '../Functions/secondaryFunction';
 
 const OrderItemStyled = styled.li`
 display:flex;
 margin:15px;
 font-size:18px;
+flex-wrap:wrap;
 `;
 
 const ItemName = styled.span`
 flex-grow:1;
-
 `;
 
 const ItemPrice = styled.span`
@@ -32,11 +33,23 @@ background-size:cover;
 background-repeat:no-repeat;
 `;
 
-export const OrderListItem = ({ order }) => (
-   <OrderItemStyled>
-      <ItemName>{order.name}</ItemName>
-      <span>{order.count}</span>
-      <ItemPrice>{totalPriceItems(order).toLocaleString('ru-Ru', { style: 'currency', currency: 'RUB' })} </ItemPrice>
-      <TrashButton />
-   </OrderItemStyled>
-);
+const Toppings = styled.div`
+font-size:14px;
+opacity:0.7;
+width:100%;
+`;
+
+export const OrderListItem = ({ order }) => {
+   const topping = order.topping.filter(item => item.checked)
+      .map(item => item.name)
+      .join(' , ');
+   return (
+      <OrderItemStyled>
+         <ItemName>{order.name}  {order.choice}</ItemName>
+         <span>{order.count}</span>
+         <ItemPrice>{formatCurrency(totalPriceItems(order))} </ItemPrice>
+         <TrashButton />
+         {topping && <Toppings>Добавки:{topping}</Toppings>}
+      </OrderItemStyled >
+   )
+};

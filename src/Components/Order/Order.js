@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { ModalButton } from '../Style/ModalButton';
 import { OrderListItem } from './OrderListItem';
 import { totalPriceItems } from '../Functions/secondaryFunction';
+import { formatCurrency } from '../Functions/secondaryFunction';
 
 const OrderStyled = styled.section`
 position:fixed;
@@ -11,7 +12,7 @@ flex-direction:column;
 top:80px;
 left:0;
 background:#fff;
-min-width:380px;
+width:380px;
 height:90%;
 box-shadow:3px 4px 5px rgba(0,0,0,0.25);
 padding:20px;
@@ -36,7 +37,7 @@ const Total = styled.div`
 display:flex;
 margin-bottom:30px;
 margin-left:30px;
-margin-right:50px;
+margin-right:30px;
 & span:first-child{
 flex-grow:1;
 }
@@ -45,8 +46,8 @@ flex-grow:1;
 const TotalPrice = styled.span`
 display:inline-block;
 text-align:right;
-min-width:65px;
-margin-left:20px;
+min-width:75px;
+margin-left:40px;
 }
 `;
 
@@ -60,25 +61,28 @@ export const Order = ({ orders }) => {
    const total = orders.reduce((result, order) =>
       result += totalPriceItems(order), 0);
 
+   const totalCounter = orders.reduce((result, order) =>
+      result += order.count, 0);
+
    return (
       <OrderStyled>
-         <OrderTitle> your order</OrderTitle>
+         <OrderTitle> Ваш заказ</OrderTitle>
          <OrderContent>
             {orders.length ?
                <OrderList>
                   {orders.map(order => <OrderListItem order={order} />)}
                </OrderList> :
                <EmptyList>
-                  Order's list is empty!
+                  Список заказов пуст!
                </EmptyList>}
          </OrderContent>
          <Total>
-            <span>Total</span>
-            <span>1</span>
-            <TotalPrice>{total.toLocaleString('ru-Ru', { style: 'currency', currency: 'RUB' })}</TotalPrice>
+            <span>Итого:</span>
+            <span>{totalCounter}</span>
+            <TotalPrice>{formatCurrency(total)}</TotalPrice>
          </Total>
          <ModalButton>
-            Arrange
+            Заказать
          </ModalButton>
       </OrderStyled>
    );

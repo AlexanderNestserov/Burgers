@@ -61,7 +61,7 @@ export const NavBar = () => (
       </Logo>
       <Button>
          <ImgSign src={signImg} alt='sign'></ImgSign><br />
-         ENTER
+         ВОЙТИ
       </Button>
    </NavBarStyled>
 );

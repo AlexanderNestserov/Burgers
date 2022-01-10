@@ -4,6 +4,12 @@ import { ModalButton } from '../Style/ModalButton';
 import { CountItem } from '../Modal/CountItem';
 import { useCount } from '../Hooks/useCount';
 import { totalPriceItems } from '../Functions/secondaryFunction';
+import { formatCurrency } from '../Functions/secondaryFunction';
+import { Topping } from './Topping';
+import { Choices } from './Choices';
+import { useTopping } from '../Hooks/useTopping';
+import { useChoices } from '../Hooks/useChoices';
+
 
 const Overlay = styled.div`
 position:fixed;
@@ -22,7 +28,7 @@ const Modal = styled.div`
 margin-top:50px;
 background-color:#fff;
 width:600px;
-height:500px;
+height:600px;
 font-family:Pacifico;
 `;
 
@@ -53,12 +59,14 @@ font-family:'Pacifico';
 const TotalPriceItem = styled.div`
 display:flex;
 justify-content:space-between;
-margin:20px;
+margin:10px 0;
 `;
 
 export const ModalItem = ({ openItem, setOpenItem, orders, setOrders }) => {
 
    const counter = useCount();
+   const toppings = useTopping(openItem);
+   const choices = useChoices(openItem);
 
    const closeModal = (e) => {
       if (e.target.id === "overlay") {
@@ -68,7 +76,9 @@ export const ModalItem = ({ openItem, setOpenItem, orders, setOrders }) => {
 
    const order = {
       ...openItem,
-      count: counter.count
+      count: counter.count,
+      topping: toppings.toppings,
+      choice: choices.choice,
    }
 
    const addToOrder = () => {
@@ -88,14 +98,19 @@ export const ModalItem = ({ openItem, setOpenItem, orders, setOrders }) => {
             <Content>
                <HeaderContent>
                   <div>{openItem.name}</div>
-                  <div>{openItem.price.toLocaleString('ru-Ru', { style: 'currency', currency: 'RUB' })}</div>
+                  <div>{formatCurrency(openItem.price)}</div>
                </HeaderContent>
                <CountItem {...counter} />
+               {openItem.toppings && <Topping {...toppings} />}
+               {openItem.choices && <Choices {...choices} openItem={openItem} />}
                <TotalPriceItem>
-                  <span>Price:</span>
-                  <span>{totalPriceItems(order).toLocaleString('ru-Ru', { style: 'currency', currency: 'RUB' })}</span>
+                  <span>Цена:</span>
+                  <span>{formatCurrency(totalPriceItems(order))}</span>
                </TotalPriceItem>
-               <ModalButton onClick={addToOrder}>ADD</ModalButton>
+               <ModalButton
+                  onClick={addToOrder}
+                  disabled={order.choices && !order.choice}
+               >Добавить</ModalButton>
             </Content>
          </Modal>
       </Overlay>

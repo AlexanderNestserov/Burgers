@@ -23,14 +23,14 @@ export const Menu = ({ setOpenItem }) => (
    <MenuStyled>
       <DivBanner />
       <SectionMenu>
-         <H2>Burgers</H2>
+         <H2>Сочные бургеры</H2>
          <ListItem
             itemList={dbMenu.burger}
             setOpenItem={setOpenItem}
          />
       </SectionMenu>
       <SectionMenu>
-         <H2>Eats/Drinks</H2>
+         <H2>Напитки</H2>
          <ListItem
             itemList={dbMenu.other}
             setOpenItem={setOpenItem}

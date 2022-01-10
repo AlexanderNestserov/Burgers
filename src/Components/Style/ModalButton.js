@@ -1,4 +1,3 @@
-import React from 'react';
 import styled from 'styled-components';
 
 export const ModalButton = styled.button`
@@ -10,7 +9,6 @@ font -family:Roboto;
 font-size:24px;
 display:block;
 margin:0 auto;
-margin-top:30px;
 border-radius:20px;
 box-shadow:0 5px 1px rgba(0,0,0,0.5);
 &:hover{
@@ -21,5 +19,9 @@ box-shadow:0 5px 1px rgba(0,0,0,0.5);
 	top: 3px;
    background-color:#299B01;
    box-shadow:0 2px 1px rgba(0,0,0,0.5);
+}
+&:disabled{
+   color:#bbb;
+   background-color:grey;
 }
 `;

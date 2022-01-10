@@ -1,11 +1,10 @@
-import React from 'react';
-
 
 export const totalPriceItems = (order) => {
-   return order.price * order.count;
+   const countTopping = order.topping && order.topping.filter(item => item.checked).length;
+   const priceTopping = countTopping * (order.price * 0.1);
+   return (order.price + priceTopping) * order.count;
 };
 
 export const formatCurrency = (str) => {
-   str = str.toLocaleString('ru-Ru', { style: 'currency', currency: 'RUB' });
-   return str
+   return str.toLocaleString('ru-Ru', { style: 'currency', currency: 'RUB' });
 };
