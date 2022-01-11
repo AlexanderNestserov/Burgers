@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import styled from 'styled-components';
 import groupImage from '../images/Group.svg';
 import { totalPriceItems } from '../Functions/secondaryFunction';
@@ -9,6 +9,7 @@ display:flex;
 margin:15px;
 font-size:18px;
 flex-wrap:wrap;
+cursor:pointer;
 `;
 
 const ItemName = styled.span`
@@ -39,16 +40,19 @@ opacity:0.7;
 width:100%;
 `;
 
-export const OrderListItem = ({ order }) => {
+export const OrderListItem = ({ order, index, deleteItem, setOpenItem }) => {
    const topping = order.topping.filter(item => item.checked)
       .map(item => item.name)
       .join(' , ');
+
+   const refDeleteButton = useRef(null);
+
    return (
-      <OrderItemStyled>
+      <OrderItemStyled onClick={(e) => e.target !== refDeleteButton.current && setOpenItem({ ...order, index })}>
          <ItemName>{order.name}  {order.choice}</ItemName>
          <span>{order.count}</span>
          <ItemPrice>{formatCurrency(totalPriceItems(order))} </ItemPrice>
-         <TrashButton />
+         <TrashButton ref={refDeleteButton} onClick={() => deleteItem(index)} />
          {topping && <Toppings>Добавки:{topping}</Toppings>}
       </OrderItemStyled >
    )

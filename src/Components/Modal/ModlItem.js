@@ -64,9 +64,10 @@ margin:10px 0;
 
 export const ModalItem = ({ openItem, setOpenItem, orders, setOrders }) => {
 
-   const counter = useCount();
+   const counter = useCount(openItem.count);
    const toppings = useTopping(openItem);
    const choices = useChoices(openItem);
+   const isEdit = openItem.index > -1;
 
    const closeModal = (e) => {
       if (e.target.id === "overlay") {
@@ -80,6 +81,13 @@ export const ModalItem = ({ openItem, setOpenItem, orders, setOrders }) => {
       topping: toppings.toppings,
       choice: choices.choice,
    }
+
+   const editOrder = () => {
+      const newOrders = [...orders];
+      newOrders[openItem.index] = order;
+      setOrders(newOrders);
+      setOpenItem(null);
+   };
 
    const addToOrder = () => {
       setOrders([...orders, order]);
@@ -108,9 +116,9 @@ export const ModalItem = ({ openItem, setOpenItem, orders, setOrders }) => {
                   <span>{formatCurrency(totalPriceItems(order))}</span>
                </TotalPriceItem>
                <ModalButton
-                  onClick={addToOrder}
+                  onClick={isEdit ? editOrder : addToOrder}
                   disabled={order.choices && !order.choice}
-               >Добавить</ModalButton>
+               >{isEdit ? 'Изменить' : 'Добавить'}</ModalButton>
             </Content>
          </Modal>
       </Overlay>
