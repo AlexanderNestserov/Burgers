@@ -1,6 +1,6 @@
 import React from 'react';
-import firebase from 'firebase/app';
-import 'firebase/auth';
+import firebase from 'firebase/compat/app';
+import 'firebase/compat/auth';
 import { NavBar } from './Components/NavBar/NavBar';
 import { Menu } from './Components/Menu/Menu';
 import { GlobalStyle } from './Components/Style/GlobalStyle';
@@ -24,15 +24,14 @@ firebase.initializeApp(firebaseConfig);
 
 function App() {
 
-  const authFirebase = firebase.auth;
-  const auth = useAuth(authFirebase);
+  const auth = useAuth(firebase.auth);
   const openItem = useOpenItem();
   const orders = useOrders();
 
   return (
     <>
       <GlobalStyle />
-      <NavBar />
+      <NavBar {...auth} />
       <Order  {...orders}{...openItem} />
       <Menu {...openItem} />
       {openItem.openItem && <ModalItem {...openItem} {...orders} />}

@@ -53,16 +53,40 @@ margin-right:10px;
 }
 `;
 
-export const NavBar = () => (
+const LogOut = styled.span`
+font-size:36px;
+cursor:pointer;
+font-weight:700;
+`;
+
+const User = styled.div`
+display:flex;
+align-items:center;
+text-align:center;
+`;
+
+export const NavBar = ({ authentication, login, logOut }) => (
    <NavBarStyled>
       <Logo>
          <ImgLogo src={logoImg} alt='logo'></ImgLogo>
          <H1>Mr. Burger</H1>
       </Logo>
-      <Button>
-         <ImgSign src={signImg} alt='sign'></ImgSign><br />
-         ВОЙТИ
-      </Button>
+      {authentication ?
+         <User>
+            <figure>
+               <ImgSign src={signImg} alt={authentication.displayName}></ImgSign>
+               <figcaption>
+                  {authentication.displayName}
+               </figcaption>
+            </figure>
+            <br />
+            <LogOut title='Выйти' onClick={logOut}>X</LogOut >
+         </User> :
+         <Button onClick={login}>
+            <ImgSign src={signImg} alt='signin'></ImgSign><br />
+            ВОЙТИ
+         </Button>
+      }
    </NavBarStyled>
 );
 
