@@ -2,7 +2,6 @@ import { useEffect } from 'react';
 
 export const useTitle = openItem => {
    useEffect(() => {
-      document.title = openItem ? openItem.name : 'Burger';
-   }
-   )
+      document.title = openItem ? openItem.name : 'Burgers';
+   }, [openItem]);
 }

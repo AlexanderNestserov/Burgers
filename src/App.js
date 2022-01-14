@@ -14,12 +14,12 @@ import { useTitle } from './Components/Hooks/useTitle';
 
 
 const firebaseConfig = {
-  apiKey: "AIzaSyADQ3UJx2k34GEw1NyR_GuBK8782Ky0Hos",
-  authDomain: "burgers-1d1d1.firebaseapp.com",
-  projectId: "burgers-1d1d1",
-  storageBucket: "burgers-1d1d1.appspot.com",
-  messagingSenderId: "1067722181154",
-  appId: "1:1067722181154:web:8ca686ffa48973d067187b"
+  apiKey: "AIzaSyC2EgGAD12loy1ErqkEGHuQ2VAOimICOos",
+  authDomain: "burgers-c9606.firebaseapp.com",
+  projectId: "burgers-c9606",
+  storageBucket: "burgers-c9606.appspot.com",
+  messagingSenderId: "455892009597",
+  appId: "1:455892009597:web:37cd55386f5b5543c72714"
 };
 
 firebase.initializeApp(firebaseConfig);
