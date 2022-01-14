@@ -1,5 +1,7 @@
 {
   "projects": {
-    "default": "burger-23d5c"
-  }
+    "default": "burgers-1d1d1",
+    "burgers": "burgers-1d1d1"
+  },
+  "targets": {}
 }

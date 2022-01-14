@@ -10,15 +10,16 @@ import { Order } from './Components/Order/Order';
 import { useOpenItem } from './Components/Hooks/useOpenItem';
 import { useOrders } from './Components/Hooks/useOrders';
 import { useAuth } from './Components/Hooks/useAuth';
+import { useTitle } from './Components/Hooks/useTitle';
 
 
 const firebaseConfig = {
-  apiKey: "AIzaSyAqqJZ0FX7J5q2VT70uLDxoagpEH6hyyLM",
-  authDomain: "burger-23d5c.firebaseapp.com",
-  projectId: "burger-23d5c",
-  storageBucket: "burger-23d5c.appspot.com",
-  messagingSenderId: "534398103398",
-  appId: "1:534398103398:web:4311c58cffc7e9bc6922a7"
+  apiKey: "AIzaSyADQ3UJx2k34GEw1NyR_GuBK8782Ky0Hos",
+  authDomain: "burgers-1d1d1.firebaseapp.com",
+  projectId: "burgers-1d1d1",
+  storageBucket: "burgers-1d1d1.appspot.com",
+  messagingSenderId: "1067722181154",
+  appId: "1:1067722181154:web:8ca686ffa48973d067187b"
 };
 
 firebase.initializeApp(firebaseConfig);
@@ -28,6 +29,7 @@ function App() {
   const auth = useAuth(firebase.auth);
   const openItem = useOpenItem();
   const orders = useOrders();
+  useTitle(openItem.openItem);
 
   return (
     <>

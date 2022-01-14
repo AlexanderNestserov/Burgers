@@ -75,12 +75,15 @@ export const Order = ({ orders, setOrders, setOpenItem, authentication, login, f
          email: authentication.email,
          order: newOrder,
       });
+      setOrders([]);
    }
    const deleteItem = index => {
       const newOrders = [...orders];
       newOrders.splice(index, 1);
       setOrders(newOrders);
    };
+
+
 
    const total = orders.reduce((result, order) =>
       result += totalPriceItems(order), 0);
